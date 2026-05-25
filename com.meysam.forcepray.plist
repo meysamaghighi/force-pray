@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.meysam.forcepray</string>
+
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/meysamaghighi/Projects/force-pray/.venv/bin/python</string>
+        <string>/Users/meysamaghighi/Projects/force-pray/daemon.py</string>
+    </array>
+
+    <key>WorkingDirectory</key>
+    <string>/Users/meysamaghighi/Projects/force-pray</string>
+
+    <key>RunAtLoad</key>
+    <true/>
+
+    <key>KeepAlive</key>
+    <true/>
+
+    <key>StandardOutPath</key>
+    <string>/Users/meysamaghighi/.force-pray/stdout.log</string>
+
+    <key>StandardErrorPath</key>
+    <string>/Users/meysamaghighi/.force-pray/stderr.log</string>
+</dict>
+</plist>
