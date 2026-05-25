@@ -20,14 +20,17 @@ CITY = "Stockholm"
 COUNTRY = "Sweden"
 METHOD = 0  # Shia Ithna-Ashari, Leva Institute, Qum (Jafari)
 SCHOOL = 0  # 0 = Shafi (matches Jafari Asr)
+LATITUDE_ADJUSTMENT = 1  # 1 = Middle of the Night (needed for Stockholm's high latitude)
 
-# Manual minute offsets if you want to align with the printed PDF.
-# Positive = later. Adjust after comparing to the actual PDF.
+# Manual minute offsets calibrated against the Imam Ali Center PDF (May 2026).
+# Fajr: constant +29 min across the month.
+# Maghrib: +5..+7 min, picked +6 (≤1 min drift).
+# Re-verify each season — at Stockholm's latitude the offsets may shift.
 OFFSETS_MIN = {
-    "Fajr": 0,
+    "Fajr": 29,
     "Dhuhr": 0,
     "Asr": 0,
-    "Maghrib": 0,
+    "Maghrib": 6,
     "Isha": 0,
 }
 
@@ -45,6 +48,7 @@ def _fetch(d: date) -> dict[str, str]:
     url = (
         f"https://api.aladhan.com/v1/timingsByCity/{d.strftime('%d-%m-%Y')}"
         f"?city={CITY}&country={COUNTRY}&method={METHOD}&school={SCHOOL}"
+        f"&latitudeAdjustmentMethod={LATITUDE_ADJUSTMENT}"
     )
     with urllib.request.urlopen(url, timeout=15) as r:
         data = json.load(r)
